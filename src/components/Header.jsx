@@ -3,7 +3,7 @@ import { ShoppingCartIcon, MagnifyingGlassIcon, Bars3Icon } from "@heroicons/rea
 import {signIn, signOut, useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import { useSelector } from "react-redux";
-import { selectItems } from "@/slices/trolleySlice";
+import { selectItems } from "../slices/trolleySlice";
 
 function Header() {
     const {data:session, status} = useSession();
