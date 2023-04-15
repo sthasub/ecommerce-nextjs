@@ -37,7 +37,7 @@ export default function CheckoutProduct({ id, title, price, description, categor
                     }
                 </div>
                 <p className='text-xs my-2 line-clamp-2'>{description}</p>
-                <Currency quantity={price} currency="NPR" />
+                <Currency quantity={price} currency="AUD" />
                 {hasPrime && (
                     <div className="flex items-center space-x-2">
                         <img loading="lazy" src="https://links.papareact.com/fdw" alt="laz" className="w-12" />
