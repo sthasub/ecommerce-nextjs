@@ -2,10 +2,10 @@ import Header from '@/components/Header'
 import { getSession, useSession } from 'next-auth/react'
 import db from '../../firebase';
 import moment from "moment";
+import {collection, getDocs} from 'firebase/firestore';
 
 export default function Orders({orders}) {
     const {data:session,status}=useSession();
-    console.log(orders, "asdsadsa"); 
   return (
     <div>
         <Header />
@@ -25,17 +25,24 @@ export async function getServerSideProps(context){
 
     //Get the users logged in credentials..
     const session = await getSession(context);
-
+    console.log("first");
     if(!session){
         return {
             props:{},
         };
     }else{
         // firebase db
+        
         const stripeOrders = await db.collection('users')
         .doc(session.user.email).collection('orders').orderBy('timestamp','desc').get();
+        console.log(stripeOrders);
+        // const orderCollection = await db.collection('users').doc()
+        
+        //     const stripeOrders = await getDocs(orderCollection);
+        //     const filterData = stripeOrders.docs.map(doc=>({...doc.data(),id:session.user.id}));
+        //     console.log(filterData); 
 
-        //stripe orders
+            // stripe orders
         const orders = await Promise.all(
             stripeOrders.docs.map(async (order)=>({
                 id:order.id,
@@ -50,6 +57,9 @@ export async function getServerSideProps(context){
                 ).data,
             }))
         );
+        
+        
+        
         return {
             props:{
                 orders,
