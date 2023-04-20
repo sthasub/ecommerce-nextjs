@@ -27,7 +27,7 @@ export default function Order({ id, amount, amountShipping, items, timestamp, im
             <div className='p-5 sm:p-10'>
                 <div className='flex space-x-6 overflow-x-auto'>
                     {images.map(image=>(
-                        <img src={image} alt='' className='h-20 object-contain sm:h-32'></img>
+                        <img src={image} key={id} alt='' className='h-20 object-contain sm:h-32'></img>
                     ))}
                 </div>
             </div>  

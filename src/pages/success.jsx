@@ -1,10 +1,11 @@
-import Header from '@/components/Header'
-import { CheckCircleIcon } from '@heroicons/react/20/solid'
-import { useRouter } from 'next/router'
-import React from 'react'
+import Header from '@/components/Header';
+import { CheckCircleIcon } from '@heroicons/react/20/solid';
+import { useRouter } from 'next/router';
+import React from 'react';
 
 export default function success() {
     const router = useRouter();
+
   return (
     <div className='bg-gray-100 h-screen'>
         <Header />
