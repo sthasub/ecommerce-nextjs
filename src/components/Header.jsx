@@ -36,13 +36,13 @@ function Header() {
                 {/*Right*/}
                 <div className="text-white
                 flex items-center text-xs space-x-6 mx-6">
-                    <div onClick={!session? signIn:signOut} className="cursor-pointer link">
+                    <div onClick={!session? signIn:signOut} className="cursor-pointer link" placeholder="press for logout if you login ">
                         <p className="hover:underline">{
                             session? `Hello, ${session.user.name}`:`Sign in`
                         }</p>
                         <p className="font-extrabold md:text-sm">Account & Lists</p>
                     </div>
-                    <div className="link">
+                    <div onClick={(()=>session && router.push('/orders'))} className="cursor-pointer link">
                         <p>& orders</p>
                         <p className="font-extrabold md:text-sm">Return</p>
                     </div>

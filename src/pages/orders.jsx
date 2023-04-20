@@ -2,22 +2,33 @@ import Header from '@/components/Header'
 import { getSession, useSession } from 'next-auth/react'
 import db from '../../firebase';
 import moment from "moment";
-import { collection,query, getDocs, orderBy } from 'firebase/firestore';
-import { data } from 'autoprefixer';
+import { collection, query, getDocs, orderBy } from 'firebase/firestore';
+import Order from "@/components/Order";
 
 export default function Orders({ orders }) {
     const { data: session, status } = useSession();
 
-    console.log(orders);
+    // console.log(orders);
     return (
         <div>
             <Header />
             <main className='max-w-screen-lg mx-auto'>
                 <h1 className='text-3xl border-b mb-2 mt-3 pb-1 border-yellow-400'>Your Orders</h1>
                 {session ? (
-                    <h2>x Orders</h2>
+                    <h2>{orders.length} Orders</h2>
                 ) : (<h2>Please sign in to see your orders</h2>)}
-                <div className='mt-5 space-y-4'></div>
+                <div className='mt-5 space-y-4'>
+                    {orders?.map(({ id, amount, amountShipping, items, timestamp, images }) =>
+                        <Order
+                            key={id}
+                            id={id}
+                            amount={amount}
+                            amountShipping={amountShipping}
+                            items={items}
+                            timestamp={timestamp}
+                            images={images}
+                        />)}
+                </div>
             </main>
         </div>
     )
@@ -34,13 +45,13 @@ export async function getServerSideProps(context) {
         };
     } else {
         // firebase db
-        
+
         // const stripeOrders = await db.collection('users')
         //     .doc(session.user.email).collection('order').orderBy('timestamp', 'desc').get();
 
         // db, collection/document/subcollection
-        const stripeOrders = query(collection(db, "users", session.user.email, "order"),orderBy('timestamp', 'desc'))
-        
+        const stripeOrders = query(collection(db, "users", session.user.email, "order"), orderBy('timestamp', 'desc'))
+
         const getOrders = await getDocs(stripeOrders);
 
         const orders = await Promise.all(
