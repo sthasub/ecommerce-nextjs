@@ -3,7 +3,7 @@ import { CheckCircleIcon } from '@heroicons/react/20/solid';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-export default function success() {
+export default function Success() {
     const router = useRouter();
 
   return (
