@@ -23,7 +23,6 @@ export default async (request, response)=>{
             shipping_address_collection:{
                 allowed_countries:["AU","NP","JP"]
             },
-            mode:'payment',
             line_items:transformedItems,
             mode:'payment',
             success_url:`${process.env.HOST}/success`,
