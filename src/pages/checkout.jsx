@@ -9,7 +9,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 
 // load stripe
-const stripePromise = loadStripe(process.env.stripe_public_key);
+const stripePromise = loadStripe(process.env.PUBLISHABLE_KEY);
 
 function Checkout() {
   const {data:session, status} = useSession();
