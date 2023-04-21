@@ -12,3 +12,6 @@ pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Phase One done.
+Checkout this production running link:- https://ecommerce-amazon-1.vercel.app/ 
