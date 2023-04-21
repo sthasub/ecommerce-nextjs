@@ -14,6 +14,6 @@ module.exports = {
     domains:["links.papareact.com","fakestoreapi.com"]
   },
   env:{
-    stripe_public_key:process.env.STRIPE_PUBLIC_KEY
+    stripe_publishable_key:process.env.STRIPE_PUBLISHABLE_KEY
   },
 };
