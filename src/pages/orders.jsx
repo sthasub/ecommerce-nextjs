@@ -50,7 +50,7 @@ export async function getServerSideProps(context) {
         //     .doc(session.user.email).collection('order').orderBy('timestamp', 'desc').get();
 
         // db, collection/document/subcollection
-        const stripeOrders = query(collection(db, "users", session.user.email, "order"), orderBy('timestamp', 'desc'))
+        const stripeOrders = query(collection(db, "users", session.user.email, "order"), orderBy('timestamp', 'desc'));
 
         const getOrders = await getDocs(stripeOrders);
 
